@@ -16,7 +16,6 @@ function set_git() {
   git config --global user.name "impossible98"
 }
 
-
 function install_ssh() {
   echo ""
   ssh -V
@@ -33,11 +32,14 @@ function set_ssh() {
 
 function install_asdf() {
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
-  echo "" >> ~/.bashrc
-  echo "# asdf" >> ~/.bashrc
-  echo ". $HOME/.asdf/asdf.sh" >> ~/.bashrc
-  echo ". $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc
-  source ~/.bashrc
+  {
+    echo ""
+    echo "# asdf"
+    echo ". $HOME/.asdf/asdf.sh"
+    cho ". $HOME/.asdf/completions/asdf.bash"
+  } >> ~/.bashrc
+  # shellcheck source=/dev/null
+  source "$HOME/.bashrc"
   asdf --version
   echo "asdf installed"
 }
