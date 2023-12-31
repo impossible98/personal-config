@@ -31,9 +31,21 @@ function set_ssh() {
   cat ~/.ssh/id_rsa.pub
 }
 
+function install_asdf() {
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
+  echo "" >> ~/.bashrc
+  echo "# asdf" >> ~/.bashrc
+  echo ". $HOME/.asdf/asdf.sh" >> ~/.bashrc
+  echo ". $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc
+  source ~/.bashrc
+  asdf --version
+  echo "asdf installed"
+}
+
 function main() {
   install_git
   install_ssh
+  install_asdf
 }
 
 main
